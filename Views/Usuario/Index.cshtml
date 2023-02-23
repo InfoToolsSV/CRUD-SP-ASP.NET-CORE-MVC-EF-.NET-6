@@ -1,0 +1,33 @@
+@model List<Usuario>
+    <H2>Usuarios</H2>
+    <a class="btn btn-success" asp-action="Crear">Crear Usuario</a>
+
+    @if (Model.Count ==0)
+    {
+    <p>No hay usuarios registrados.</p>
+    }
+    else
+    {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modelItem=>usuario.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem=>usuario.Edad)</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Actualizar" asp-route-id="@usuario.Id_Usuario">Editar</a>
+                    <a class="btn btn-danger" asp-action="Eliminar" asp-route-id="@usuario.Id_Usuario">Eliminar</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    }
